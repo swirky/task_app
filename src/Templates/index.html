@@ -1,0 +1,22 @@
+{% extends "baza.html" %}
+{%from "macros.html" import show_flash%}
+
+{% block title%}
+Strona główna
+{%endblock%}
+
+{% block content %}
+{{ show_flash() }}
+<br>
+<h2>Witaj <strong>{{ session['user'] if 'user' in session}}</strong> na stronie menadżera twoich tasków</h2>
+<br>
+1. Przejdź do zakładki "Utwórz zadanie" aby dodać nowego taska
+<br>
+2. Przejdź do zakładki "Twoje zadania" aby przeglądnąć listę twoich tasków
+<br>
+3. Taski możesz edytować (nazwę, treść, priorytet, status, termin wykonania) oraz usuwać
+<br>
+4. Jeśli jesteś administratorem możesz zarządzać użytkownikami i nadawać im uprawnienia
+
+
+{%endblock%}

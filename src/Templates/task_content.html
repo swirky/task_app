@@ -1,0 +1,36 @@
+{%extends "baza.html"%}
+{%from "macros.html" import show_flash %} 
+
+{% block content %}
+
+    {{ show_flash() }}
+    <h2>Zadanie zostało utworzone!</h2> <br>
+   
+
+   
+
+    <h3>Nazwa zadania: {{task_name}}</h3>
+
+    {% if priority=='high'%}
+        <h3>Priorytet wysoki!</h3>
+    {% elif priority=='medium'%}
+        <h3>Priorytet normalny!</h3>
+    {% elif priority=='low'%}
+        <h3>Priorytet niski!</h3>
+    {%endif%}
+
+    {% if status=='not_started'%}
+        <h3>Status: Nie rozpoczęto</h3>
+    {% elif status=='during'%}
+        <h3>Status: W realizacji</h3>
+    {%endif%}
+
+    <h3>Treść zadania: {{task_content}} </h3>
+    <h3><strong>Deadline</strong> {{deadline}}</h3>
+
+
+   
+
+
+
+{%endblock%}

@@ -1,0 +1,41 @@
+{% extends "baza.html" %}
+{%from "macros.html" import show_flash%}
+
+{%block title%}
+Nowy task
+{%endblock%}
+
+
+
+{% block content %}
+{{ show_flash() }}
+<br>
+<h2>Dodaj nowe zadanie</h2>
+
+<form id="form" action = "{{ url_for('new_task') }}" method="POST">
+    <label for="task_name">Nazwa zadania</label> <br>
+    <input type="text" id="task_name" name="task_name"><br>
+
+    <label for="wybor">Wybierz priorytet:</label> <br>
+    <select id="wybor" name="priority"> <br>
+        <option value="high">Wysoki</option>
+        <option value="medium">Średni</option>
+        <option value="low">Niski</option>
+    </select> <br>
+
+    <label for="wybor">Status zadania:</label> <br>
+    <select id="wybor" name="status"> <br>
+        <option value="not_started">Nie rozpoczęto</option>
+        <option value="during">W realizacji</option>
+    </select> <br>
+
+    <label for="task_content">Treść zadania</label> <br>
+    <textarea id="task_content" name="task_content" cols="50" rows="4"></textarea><br>
+    <label for="deadline">Termin</label> <br>
+    <input type="datetime-local" id="deadline" name="deadline"><br>
+
+    <input type="submit" value="Wyslij">
+
+</form>    
+
+{% endblock %}

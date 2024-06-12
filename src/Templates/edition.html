@@ -1,0 +1,38 @@
+{% extends "baza.html" %}
+
+{%block title%}
+Edycja zadania
+{%endblock%}
+
+{% block content %}
+
+<form id="formularz1" action = "{{ url_for('edition_task', task_id=task.id) }}" method="POST">
+
+    <label for="task_name">Nazwa taska</label> <br>
+    <input type="text" id="task_name" name="task_name" value="{{task.task_name}}"><br>
+
+    <label for="wybor">Zmień priorytet:</label> <br>
+    <select id="wybor" name="priority"> <br>
+        <option value="high">Wysoki</option>
+        <option value="medium">Średni</option>
+        <option value="low">Niski</option>
+    </select> <br>
+
+    <label for="wybor">Zmień status:</label> <br>
+    <select id="wybor" name="status"> <br>
+        <option value="not_started">Nie rozpoczęto</option>
+        <option value="during">W realizacji</option>
+        <option value="completed">Zakońzony</option>
+    </select> <br>
+
+    <label for="task_content">Treść zadania</label> <br>
+    <textarea id="task_content" name="task_content" cols="50" rows="4" value="{{task.task_content}}">{{task.task_content}}</textarea><br>
+
+    <label for="deadline">Termin</label> <br>
+    <input type="datetime-local" id="deadline" name="deadline" value="{{task.deadline}}"><br>
+
+    <input type="submit" value="Edytuj">
+
+</form>    
+
+{% endblock %}

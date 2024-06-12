@@ -1,0 +1,49 @@
+{%extends "baza.html"%}
+{%from "macros.html" import show_flash %} 
+
+{%block title%}
+Lista twoich tasków
+{%endblock%}
+
+{% block content %}
+{{ show_flash() }}
+<br>
+<h2>Twoje taski</h2>
+<table class="table table-bordered table-light" style="max-width: 100%; width: 100%;">
+    <thead>
+        <tr>
+            <th>Nazwa taska</th>
+            <th>Treść</th>
+            <th>Status</th>
+            <th>Priorytet</th>
+            <th>Termin ukończenia</th>
+            <th>Operacje</th>
+        </tr>
+    </thead>
+    <tbody>
+        {%for task in tasks%}
+        <tr>
+            <td>{{task.task_name}}</td>
+            <td>{{task.task_content}}</td>
+            <td style="color: {% if task.status == 'not_started' %}blue{% elif task.status == 'during' %}orange{% else %}green{% endif %};">{{ task.status }}</td>
+            <td style="color: {% if task.priority == 'high' %}red{% elif task.priority == 'medium' %}blue{% else %}black{% endif %};">{{ task.priority }}</td>
+            <td>{{task.deadline}}</td>
+            {%if login.is_admin=="0" %}
+                <td>{{login.user}}</td>
+            {%endif%}
+            <td>
+                <form action="{{url_for('edition_task',task_id=task.id)}}" method="get" style="display: inline;">
+                    <button type='submit' class="btn btn-success btn-sm">Edytuj</button>  
+                </form>
+                <form action="{{url_for('delete_task',task_id=task.id)}}" method="post" style="display: inline;">
+                <button type='submit' class="btn btn-danger btn-sm">Usuń</button>  
+                </form>
+            </td>
+        </tr>
+        {%endfor%}
+       
+    </tbody>
+</table>
+
+
+{%endblock%}
